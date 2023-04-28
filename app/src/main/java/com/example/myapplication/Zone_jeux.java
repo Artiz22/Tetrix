@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
 import static com.example.myapplication.OpenGLES30Activity.imageView;
+import static com.example.myapplication.OpenGLES30Activity.lan;
 import static com.example.myapplication.OpenGLES30Activity.textView;
+import static com.example.myapplication.OpenGLES30Activity.textfin;
 
 import android.util.Log;
 import android.util.Pair;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -15,7 +18,8 @@ public class Zone_jeux {
     ArrayList<ArrayList<Pair<Integer, float[]>>>table;
     int tailley=1;
     int taillex=7;
-    int points;
+     static int points;
+    static boolean boolfinpartie=false;
 
     static Piece piece=new Piece();
 
@@ -47,9 +51,6 @@ public class Zone_jeux {
             }
         }
         textView.setText(points+" "+"Pts");
-        if(fin_partie()){
-            System.out.println("C'est la fin de la partie");
-        }
     }
 
    public int Succesion(int x ){
@@ -182,6 +183,10 @@ public class Zone_jeux {
                 }
             }
         }
+        if(fin_partie()){
+            System.out.println("COucou11511");
+            boolfinpartie=true;
+        }
         random();
     }
 
@@ -203,7 +208,6 @@ public boolean fin_partie(){
     }
  return true;
 }
-
 
 
 
@@ -308,7 +312,13 @@ public boolean fin_partie(){
             imageView.setImageResource(R.drawable.los);  }
         else if (n==4){piece.pieced();
             imageView.setImageResource(R.drawable.trianglerouge);
-        }}
+        }
+        if(boolfinpartie){
+            textfin.setText("Votre score est de "+points+ "pts");
+            lan.performClick();
+        }
+
+    }
 
 
 }
