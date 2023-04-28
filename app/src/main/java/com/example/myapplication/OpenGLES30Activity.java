@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 
 
+import static com.example.myapplication.Zone_jeux.commencerpartie;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,6 +15,7 @@ import android.opengl.GLSurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,7 +29,7 @@ public class OpenGLES30Activity extends Activity {
 
     // le conteneur View pour faire du rendu OpenGL
     private GLSurfaceView mGLView;
-
+    static ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +37,6 @@ public class OpenGLES30Activity extends Activity {
 
         Intent intent = getIntent();
         int message = Integer.parseInt(intent.getStringExtra("message"));
-
 
 
         /* Pour le plein écran */
@@ -70,7 +72,8 @@ public class OpenGLES30Activity extends Activity {
 
         // Définition du layout principal comme étant la vue principale de l'Activity
         setContentView(mainLayout);
-
+        imageView=findViewById(R.id.imageView2);
+        commencerpartie();
     }
 
 }

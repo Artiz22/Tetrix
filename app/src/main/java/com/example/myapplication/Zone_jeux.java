@@ -7,6 +7,7 @@ import android.util.Pair;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Zone_jeux {
 
@@ -15,7 +16,7 @@ public class Zone_jeux {
     int taillex=7;
     int points;
 
-    Piece piece=new Piece();
+    static Piece piece=new Piece();
 
 
     public Zone_jeux(int tailley) {
@@ -34,7 +35,7 @@ public class Zone_jeux {
             y= (float) (y-2.0);
         }
         points=0;
-        random();
+
     }
 
 
@@ -44,14 +45,14 @@ public class Zone_jeux {
                     formes.carre(table.get(i).get(j).second,table.get(i).get(j).first);
             }
         }
-        if(fin_partie()){
+  /*      if(fin_partie()){
             System.out.println("C'est la fin de la partie");
-        }
+        }*/
     }
 
    public int Succesion(int x ){
        for (int i = 0; i <table.size() ; i++) {
-           if (table.get(i).get(x).first == 1) {
+           if (table.get(i).get(x).first != 0) {
                return i-1;
            }
         }
@@ -97,9 +98,12 @@ public class Zone_jeux {
     boolean bool=true;
      for (int i = 0; i < piece.getLargeur(); i++) {
          if(x+i<taillex) {
-             if (table.get(0 + piece.getHauteur() - 1).get(x + i).first == 1) {
-                 bool = false;
+             for (int j = 0; j < piece.hauteur; j++) {
+                 if (table.get(0 + piece.getHauteur()-j - 1).get(x + i).first != 0) {
+                     bool = false;
+                 }
              }
+
          }
 
      }
@@ -160,9 +164,9 @@ public class Zone_jeux {
                     boolinte=true;
                 }
             }
-            if(boolinte) {
+           if(boolinte) {
                 ArrayList<Pair<Integer,ArrayList<Integer>>> tablepieces=creationpiece(sauv);
-                for (int j = sauv; j > 0; j--) {
+                for (int j = sauv; j >= 0; j--) {
                     Supprimer(j);
                 }
                 for (int j = 0; j < tablepieces.size(); j++) {
@@ -174,8 +178,15 @@ public class Zone_jeux {
         }
         random();
     }
-/////////////////////Gestion de la fin de partie/////////////////////////
 
+
+//////////////////////Commencez parti///////////////////////////////
+
+static void commencerpartie(){
+        random();
+}
+
+/////////////////////Gestion de la fin de partie/////////////////////////
 
 public boolean fin_partie(){
 
@@ -234,15 +245,18 @@ public boolean fin_partie(){
 // il y a 2 case remplies à gauche puis 2 cases vide et 3 cases remplies donc on considère qu'il y a 2 pièces horizental
     public ArrayList<Pair<Integer,ArrayList<Integer>>> creationpiece(int x) {
         ArrayList<Pair<Integer,ArrayList<Integer>>>tablefinal=new ArrayList<>();
-        for (int k = x; k > 0 ; k--) {
+        for (int k = x; k >= 0 ; k--) {
         for (int i = 0; i < table.get(k).size(); i++) {
             int depart=-5;
             ArrayList<Integer>tableint=new ArrayList<>();
-            while (table.get(k).get(i).first != 0) {
+            while (table.get(k).get(i).first != 0 ) {
                 if(depart==-5){
                     depart=i;
                 }
                 tableint.add(table.get(k).get(i).first);
+                if(i+1==taillex){
+                    break;
+                }
                 i++;
                 }
             tablefinal.add(new Pair<>(depart,tableint));
@@ -259,9 +273,11 @@ public boolean fin_partie(){
             int y=poseLarger(i);
             for (int j = 0; j < piece.getLargeur(); j++) {
                 for (int k = 0; k < piece.getHauteur() ; k++) {
-                    float[] GG = table.get(y - k).get(i + j).second;
-                    if(table.get(y-k).get(i+j).first==0) {
-                        table.get(y - k).set(i + j, new Pair<>(lapiece(j, k), GG));
+                    if(y-k>=0) {
+                        float[] GG = table.get(y - k).get(i + j).second;
+                        if (table.get(y - k).get(i + j).first == 0) {
+                            table.get(y - k).set(i + j, new Pair<>(lapiece(j, k), GG));
+                        }
                     }
                 }
             }
@@ -279,14 +295,13 @@ public boolean fin_partie(){
 
 
 
-    public void random(){
-        int n = 3;
-        if(n==0){piece.piecedouble();}
-        else if(n==1){piece.piecequadrule();}
-        else if (n==2){piece.piececoin();}
-        else if (n==3){
-            piece.piecediago();
-        ;}
+    public static void random(){
+        int n = 0;
+        if(n==0){piece.piecedouble();}//valide
+        else if(n==1){piece.piecequadrule();}//valide
+        else if (n==2){piece.piececoin();}//valide
+        else if (n==3){piece.piecediago();//valide
+        }
         else if (n==4){piece.pieced();}}
 
 

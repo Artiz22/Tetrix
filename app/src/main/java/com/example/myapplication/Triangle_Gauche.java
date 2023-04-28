@@ -88,12 +88,14 @@ public class Triangle_Gauche implements Forme {
     // Le tableau des couleurs
 
     float squareColors[]={
-                1.0f,  0.0f, 0.0f, 1.0f, // Rouge
-                1.0f,  0.0f, 0.0f, 1.0f,
-                1.0f,  0.0f, 0.0f, 1.0f,
+                0.4f, 0.4f, 0.4f, 1.0f,
                 0.0f, 0.0f, 0.0f, 1.0f,
                 0.0f, 0.0f, 0.0f, 1.0f,
-                 0.6f, 0.6f, 0.6f, 1.0f
+                0.6f, 0.6f, 0.6f, 1.0f,
+                1.0f,  0.0f, 0.0f, 1.0f,
+                1.0f,  0.0f, 0.0f, 1.0f,
+                1.0f,  0.0f, 0.0f, 1.0f,
+
 
     };
 

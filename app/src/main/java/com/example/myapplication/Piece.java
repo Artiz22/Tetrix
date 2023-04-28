@@ -8,7 +8,7 @@ public class Piece {
     ArrayList<ArrayList<Integer>> hauteurtab;
     int largeur;
     int hauteur;
-
+    int type;
     public Piece() {
         this.hauteurtab=new ArrayList<>();
         this.hauteurtab.add(new ArrayList<Integer>());
@@ -32,7 +32,7 @@ public class Piece {
         initialTab();
         largeur=1;
         hauteur=4;
-        hauteurtab.get(0).add(5);
+        hauteurtab.get(0).add(5); //4
         hauteurtab.get(0).add(5);
         hauteurtab.get(0).add(5);
         hauteurtab.get(0).add(5);
@@ -56,7 +56,7 @@ public class Piece {
         initialTab();
         largeur=3;
         hauteur=2;
-        hauteurtab.get(0).add(4);
+        hauteurtab.get(0).add(4);  //4
         hauteurtab.get(0).add(0);
         this.hauteurtab.add(new ArrayList<Integer>());
         hauteurtab.get(1).add(4);
@@ -74,7 +74,7 @@ public class Piece {
         largeur=3;
         hauteur=2;
         hauteurtab.get(0).add(0);
-        hauteurtab.get(0).add(2);
+        hauteurtab.get(0).add(2); //2
         this.hauteurtab.add(new ArrayList<Integer>());
         hauteurtab.get(1).add(2);
         hauteurtab.get(1).add(2);
@@ -114,4 +114,8 @@ public class Piece {
     public int getLargeur() {
         return largeur;
     }
+
+
+
+
 }
