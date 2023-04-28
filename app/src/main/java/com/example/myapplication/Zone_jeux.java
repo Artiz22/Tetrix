@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import static com.example.myapplication.OpenGLES30Activity.imageView;
+import static com.example.myapplication.OpenGLES30Activity.textView;
 
 import android.util.Log;
 import android.util.Pair;
@@ -45,9 +46,10 @@ public class Zone_jeux {
                     formes.carre(table.get(i).get(j).second,table.get(i).get(j).first);
             }
         }
-  /*      if(fin_partie()){
+        textView.setText(points+" "+"Pts");
+        if(fin_partie()){
             System.out.println("C'est la fin de la partie");
-        }*/
+        }
     }
 
    public int Succesion(int x ){
@@ -141,10 +143,14 @@ public class Zone_jeux {
                     float[] GG = table.get(y - k).get(i + j).second;
                     if(table.get(y-k).get(i+j).first==0) {
                         table.get(y - k).set(i + j, new Pair<>(lapiece(j, k), GG));
-                        points+=10;
+
                     }
                 }
             }
+            points+=10;
+        }
+        else {
+            return;
         }
         int sauv=-100;
         boolean bool= false;
@@ -201,11 +207,6 @@ public boolean fin_partie(){
 
 
 
-
-
-
-
-
 ////////////////////////:Gestion de la suppresion/////////////////////////
 
 //On verifie si il y a une ligne de completer
@@ -226,7 +227,6 @@ public boolean fin_partie(){
             float[] coord=table.get(j).get(k).second;
             table.get(j).set(k,new Pair<>(0,coord));
         }
-        points+=100;
     }
 
 //On fait decendre les lignes (on considère qu'une ligne forme une piece commune
@@ -296,13 +296,19 @@ public boolean fin_partie(){
 
 
     public static void random(){
-        int n = 0;
-        if(n==0){piece.piecedouble();}//valide
-        else if(n==1){piece.piecequadrule();}//valide
-        else if (n==2){piece.piececoin();}//valide
+        Random random = new Random();
+        int n = random.nextInt(5);
+        if(n==0){piece.piecedouble();
+                imageView.setImageResource(R.drawable.carre);}//valide
+        else if(n==1){piece.piecequadrule();
+                      imageView.setImageResource(R.drawable.quadruple);  }//valide
+        else if (n==2){piece.piececoin();
+                      imageView.setImageResource(R.drawable.triangle_bleu);  }//valide
         else if (n==3){piece.piecediago();//valide
-        }
-        else if (n==4){piece.pieced();}}
+            imageView.setImageResource(R.drawable.los);  }
+        else if (n==4){piece.pieced();
+            imageView.setImageResource(R.drawable.trianglerouge);
+        }}
 
 
 }

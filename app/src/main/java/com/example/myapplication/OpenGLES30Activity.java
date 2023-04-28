@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -30,6 +31,7 @@ public class OpenGLES30Activity extends Activity {
     // le conteneur View pour faire du rendu OpenGL
     private GLSurfaceView mGLView;
     static ImageView imageView;
+    static TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +75,7 @@ public class OpenGLES30Activity extends Activity {
         // Définition du layout principal comme étant la vue principale de l'Activity
         setContentView(mainLayout);
         imageView=findViewById(R.id.imageView2);
+        textView=findViewById(R.id.textView2);
         commencerpartie();
     }
 
